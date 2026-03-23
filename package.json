@@ -1,0 +1,19 @@
+{
+  "name": "tui-protfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "asciify-image": "^0.1.10",
+    "blessed": "^0.1.81",
+    "sharp": "^0.34.5",
+    "ssh2": "^1.17.0"
+  }
+}
