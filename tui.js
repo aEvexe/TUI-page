@@ -53,41 +53,41 @@ const PAGES = {
   About: {
     title: 'About',
     content: [
-      'is a creator & storyteller on the',
-      'internet, building cool products,',
-      'documenting life & reflecting on how',
-      'technology shapes our humanity.',
+      'is a Software Engineer who tries',
+      'new things, more interested in ML',
+      'training models, and building neural',
+      'networks',
       '',
-      'Explore the directories below to',
-      'learn more.',
+      'Started my journey as 15 year old kid',
+      'who was passionate about software',
+      'applications. Firstly started as a newbie',
+      'evetually becoming one of the SWE',
+      '',
+      'Learn more from Links',
     ],
   },
   Links: {
     title: 'Links',
     content: [
-      '->  GitHub      github.com/jalen',
-      '->  Twitter     @jalen',
-      '->  LinkedIn    linkedin.com/in/jalen',
-      '->  Email       jalen@example.com',
-      '->  Website     jalen.dev',
+      '->  GitHub      https://github.com/aEvexe',
+      '->  X           https://x.com/aevexee?s=11',
+      '->  LinkedIn    lhttps://www.linkedin.com/in/jaloliddin-beknazarov-38b36a375/',
+      '->  Email       beknazarovjaloliddin4@gmail.com',
+      '->  Website     jaloliddin.org',
     ],
   },
-  Work: {
-    title: 'Work',
-    content: [
-      '2023 - now',
-      '  Software Engineer @ Company',
-      '  Building things people love',
-      '',
-      '2021 - 2023',
-      '  Developer @ Previous Co.',
-      '  Led product development 0->1',
-      '',
-      '2019 - 2021',
-      '  Junior Dev @ Startup',
-      '  Full-stack web development',
-    ],
-  },
+  // Work: {
+  //   title: 'Work',
+  //   content: [
+  //     '2025 - now',
+  //     '  Software Engineer Ibrat Farzandlari',
+  //     '  Working on big startup called Zehnly AI',
+  //     '',
+  //     '2024 - 2025',
+  //     '  Student at Najot Talim',
+  //     '  Learning new skills and improvment',
+  //   ],
+  // },
 };
 
 // ─── Themes (bg: -1 = transparent/default terminal bg) ───────────────────────
@@ -132,7 +132,10 @@ function showLoader(opts) {
 
   blessed.box({
     parent: screen,
-    top: 0, left: 0, width: '100%', height: '100%',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
     style: { bg: -1 },
   });
 
@@ -196,28 +199,41 @@ function buildTUI(brailleArt, opts) {
   // ── Root box
   const root = blessed.box({
     parent: screen,
-    top: 0, left: 0, width: '100%', height: '100%',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
     style: { bg: theme.bg, fg: theme.fg },
   });
 
   // ── Top nav bar (hidden initially)
   const nav = blessed.box({
     parent: root,
-    top: 0, left: 0, width: '100%', height: 3,
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: 3,
     style: { bg: theme.bg },
     hidden: true,
   });
 
   const navLeft = blessed.box({
     parent: nav,
-    top: 1, left: 2, width: '60%', height: 1,
-    content: '', tags: true,
+    top: 1,
+    left: 2,
+    width: '60%',
+    height: 1,
+    content: '',
+    tags: true,
     style: { bg: theme.bg },
   });
 
   const statusBox = blessed.text({
     parent: nav,
-    top: 1, right: 2, width: 20, height: 1,
+    top: 1,
+    right: 2,
+    width: 20,
+    height: 1,
     content: '{bold}[ jalen.dev ]{/bold}',
     tags: true,
     style: { fg: theme.accent, bg: theme.bg },
@@ -225,7 +241,10 @@ function buildTUI(brailleArt, opts) {
 
   const navSep = blessed.line({
     parent: root,
-    top: 3, left: 0, orientation: 'horizontal', width: '100%',
+    top: 3,
+    left: 0,
+    orientation: 'horizontal',
+    width: '100%',
     style: { fg: theme.dim, bg: theme.bg },
     hidden: true,
   });
@@ -235,61 +254,80 @@ function buildTUI(brailleArt, opts) {
   const contentWidth = 86;
   const content = blessed.box({
     parent: root,
-    top: 'center', left: 'center',
-    width: contentWidth, height: contentHeight,
+    top: 'center',
+    left: 'center',
+    width: contentWidth,
+    height: contentHeight,
     style: { bg: theme.bg },
   });
 
   const asciiBox = blessed.box({
     parent: content,
-    top: 0, left: 0,
-    width: 42, height: artLines + 1,
+    top: 0,
+    left: 0,
+    width: 42,
+    height: artLines + 1,
     content: '',
     style: { fg: theme.fg, bg: theme.bg },
   });
 
   const nameBox = blessed.box({
     parent: content,
-    top: 0, left: 44,
-    width: 42, height: 7,
+    top: 0,
+    left: 44,
+    width: 42,
+    height: 7,
     content: '',
     style: { fg: theme.accent, bg: theme.bg },
   });
 
   const textBox = blessed.box({
     parent: content,
-    top: 8, left: 44,
-    width: 42, height: contentHeight - 8,
-    tags: true, content: '',
+    top: 8,
+    left: 44,
+    width: 42,
+    height: contentHeight - 8,
+    tags: true,
+    content: '',
     style: { bg: theme.bg, fg: theme.fg },
   });
 
   // ── Bottom bar (hidden initially)
   const bottomBar = blessed.box({
     parent: root,
-    bottom: 0, left: 0, width: '100%', height: 3,
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    height: 3,
     style: { bg: theme.bg },
     hidden: true,
   });
 
   const bottomSep = blessed.line({
     parent: root,
-    bottom: 3, left: 0, orientation: 'horizontal', width: '100%',
+    bottom: 3,
+    left: 0,
+    orientation: 'horizontal',
+    width: '100%',
     style: { fg: theme.dim, bg: theme.bg },
     hidden: true,
   });
 
   const versionText = blessed.text({
     parent: bottomBar,
-    bottom: 1, left: 2,
+    bottom: 1,
+    left: 2,
     content: 'v1.0.0',
     style: { fg: theme.dim, bg: theme.bg },
   });
 
   const hintText = blessed.text({
     parent: bottomBar,
-    bottom: 1, left: 'center', width: 55,
-    content: '', tags: true,
+    bottom: 1,
+    left: 'center',
+    width: 55,
+    content: '',
+    tags: true,
     style: { fg: theme.fg, bg: theme.bg },
   });
 
@@ -323,18 +361,32 @@ function buildTUI(brailleArt, opts) {
 
   function updateStyles() {
     const t = THEMES[currentTheme];
-    [root, nav, navLeft, content, asciiBox, nameBox, textBox, bottomBar].forEach(
-      (el) => { el.style.bg = t.bg; },
-    );
+    [
+      root,
+      nav,
+      navLeft,
+      content,
+      asciiBox,
+      nameBox,
+      textBox,
+      bottomBar,
+    ].forEach((el) => {
+      el.style.bg = t.bg;
+    });
     root.style.fg = t.fg;
     asciiBox.style.fg = t.fg;
     textBox.style.fg = t.fg;
-    hintText.style.fg = t.fg; hintText.style.bg = t.bg;
-    statusBox.style.fg = t.accent; statusBox.style.bg = t.bg;
+    hintText.style.fg = t.fg;
+    hintText.style.bg = t.bg;
+    statusBox.style.fg = t.accent;
+    statusBox.style.bg = t.bg;
     nameBox.style.fg = t.accent;
-    navSep.style.fg = t.dim; navSep.style.bg = t.bg;
-    bottomSep.style.fg = t.dim; bottomSep.style.bg = t.bg;
-    versionText.style.fg = t.dim; versionText.style.bg = t.bg;
+    navSep.style.fg = t.dim;
+    navSep.style.bg = t.bg;
+    bottomSep.style.fg = t.dim;
+    bottomSep.style.bg = t.bg;
+    versionText.style.fg = t.dim;
+    versionText.style.bg = t.bg;
   }
 
   function renderAll() {
@@ -370,7 +422,10 @@ function buildTUI(brailleArt, opts) {
     if (!animationDone) return;
     const help = blessed.box({
       parent: screen,
-      top: 'center', left: 'center', width: 40, height: 12,
+      top: 'center',
+      left: 'center',
+      width: 40,
+      height: 12,
       border: { type: 'line' },
       style: {
         fg: THEMES[currentTheme].fg,
@@ -378,14 +433,23 @@ function buildTUI(brailleArt, opts) {
         border: { fg: THEMES[currentTheme].accent },
       },
       content: [
-        '', '  Keyboard Shortcuts', '  -------------------',
-        '  <- / h    prev page', '  -> / l    next page',
-        '  t        cycle theme', '  ?        this help',
-        '  q        quit', '', '  Press any key to close',
+        '',
+        '  Keyboard Shortcuts',
+        '  -------------------',
+        '  <- / h    prev page',
+        '  -> / l    next page',
+        '  t        cycle theme',
+        '  ?        this help',
+        '  q        quit',
+        '',
+        '  Press any key to close',
       ].join('\n'),
     });
     screen.render();
-    screen.once('keypress', () => { help.destroy(); screen.render(); });
+    screen.once('keypress', () => {
+      help.destroy();
+      screen.render();
+    });
   });
 
   // ── Intro Animation: show image + name, type bio, reveal UI
@@ -410,4 +474,11 @@ function buildTUI(brailleArt, opts) {
   return screen;
 }
 
-module.exports = { imageToBraille, showLoader, buildTUI, NAME_BANNER, PAGES, THEMES };
+module.exports = {
+  imageToBraille,
+  showLoader,
+  buildTUI,
+  NAME_BANNER,
+  PAGES,
+  THEMES,
+};

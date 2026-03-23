@@ -1,19 +1,22 @@
 #!/usr/bin/env node
 const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
 const HOST = 'ssh.jaloliddin.org';
-const WEB_PORT = process.env.WEB_PORT || 80;
+const WEB_PORT = process.env.WEB_PORT || 3000;
 
 const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>jalen</title>
+  <title>ssh shh.jaloliddin.org</title>
+  <link rel="icon" href="/favicon.png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #0d0d1a;
+      background: #111111;
       color: #c8d8ff;
       font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
       display: flex;
@@ -35,7 +38,7 @@ const html = `<!DOCTYPE html>
       transition: border-color 0.2s;
     }
     .ssh-box:hover {
-      border-color: #ff4500;
+      border-color: #555;
     }
     .ssh-box code {
       font-size: 18px;
@@ -58,8 +61,7 @@ const html = `<!DOCTYPE html>
       stroke-width: 2;
       transition: stroke 0.2s;
     }
-    .copy-btn:hover svg { stroke: #ff4500; }
-    .copy-btn.copied svg { stroke: #00cc33; }
+    .copy-btn:hover svg { stroke: #999; }
     .hint {
       color: #666;
       font-size: 14px;
@@ -87,14 +89,29 @@ const html = `<!DOCTYPE html>
     function copyCmd() {
       navigator.clipboard.writeText('ssh ${HOST}');
       const btn = document.getElementById('copyBtn');
-      btn.classList.add('copied');
-      setTimeout(() => btn.classList.remove('copied'), 1500);
+      const svg = btn.querySelector('svg');
+      const original = svg.innerHTML;
+      svg.innerHTML = '<polyline points="20 6 9 17 4 12" />';
+      setTimeout(() => { svg.innerHTML = original; }, 1500);
     }
   </script>
 </body>
 </html>`;
 
 const server = http.createServer((req, res) => {
+  if (req.url === '/favicon.png') {
+    const faviconPath = path.join(__dirname, 'assets', 'Terminal.png');
+    fs.readFile(faviconPath, (err, data) => {
+      if (err) {
+        res.writeHead(404);
+        res.end();
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'image/png' });
+      res.end(data);
+    });
+    return;
+  }
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.end(html);
 });
